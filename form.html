@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gate Pass Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgba(172, 215, 237, 0.6);
+      padding: 30px;
+    }
+    .form-section {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .form-label {
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .btn-submit {
+      background-color: #28a745;
+      
+      width: 100%;
+      margin-top: 20px;
+    }
+    small {
+      color: gray;
+    }
+    .btn-submit:hover{
+      background-color:red ;
+
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gate Pass Form</h1>
+
+  <div class="form-section">
+    <form id="gatePassForm">
+   
+      <div class="mb-3 row">
+        <label class="form-label col-12">Date & Time</label>
+        <div class="col-md-6 mb-2">
+          <input type="date" id="date" class="form-control">
+        </div>
+        <div class="col-md-3 mb-2">
+          <input type="time" id="time" class="form-control">
+        </div>
+        <div class="col-md-3 mb-2">
+          <select id="amPm" class="form-select">
+            <option value="">Select</option>
+            <option>AM</option>
+            <option>PM</option>
+          </select>
+        </div>
+      </div>
+
+      
+      <div class="mb-3">
+        <label class="form-label">Expected Duration</label>
+        <input type="text" id="duration" class="form-control" placeholder="ex: 30 minutes">
+        <small>in minutes</small>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Employee First Name</label>
+          <input type="text" id="empFirst" class="form-control" placeholder="First Name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Employee Last Name</label>
+          <input type="text" id="empLast" class="form-control" placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Employee Email</label>
+        <input type="email" id="empEmail" class="form-control" placeholder="example@example.com">
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Department</label>
+        <input type="text" id="department" class="form-control" placeholder="Department">
+      </div>
+
+      <hr>
+
+     
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Visitor First Name</label>
+          <input type="text" id="visFirst" class="form-control" placeholder="First Name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Visitor Last Name</label>
+          <input type="text" id="visLast" class="form-control" placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Visitor Email</label>
+        <input type="email" id="visEmail" class="form-control" placeholder="example@example.com">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" id="phone" class="form-control" placeholder="(000) 000-0000">
+        <small>Please enter a valid phone number.</small>
+      </div>
+
+      <button type="submit" class="btn btn-submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("gatePassForm").addEventListener("submit", function(event) {
+      event.preventDefault(); 
+
+    
+      const date = document.getElementById("date").value.trim();
+      const time = document.getElementById("time").value.trim();
+      const amPm = document.getElementById("amPm").value.trim();
+      const duration = document.getElementById("duration").value.trim();
+      const empFirst = document.getElementById("empFirst").value.trim();
+      const empLast = document.getElementById("empLast").value.trim();
+      const empEmail = document.getElementById("empEmail").value.trim();
+      const department = document.getElementById("department").value.trim();
+      const visFirst = document.getElementById("visFirst").value.trim();
+      const visLast = document.getElementById("visLast").value.trim();
+      const visEmail = document.getElementById("visEmail").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+    
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^[0-9]{10}$/;
+
+     
+      if (!date) return alert("Please select a date.");
+      if (!time) return alert("Please select a time.");
+      if (!amPm) return alert("Please select AM or PM.");
+      if (!duration || isNaN(duration)) return alert("Please enter a valid duration in minutes.");
+      if (!empFirst) return alert("Enter employee's first name.");
+      if (!empLast) return alert("Enter employee's last name.");
+      if (!emailPattern.test(empEmail)) return alert("Enter a valid employee email.");
+      if (!department) return alert("Please enter the department.");
+      if (!visFirst) return alert("Enter visitor's first name.");
+      if (!visLast) return alert("Enter visitor's last name.");
+      if (!emailPattern.test(visEmail)) return alert("Enter a valid visitor email.");
+      if (!phonePattern.test(phone)) return alert("Enter a valid 10-digit phone number.");
+
+      
+      alert("✅ Gate Pass Form Submitted Successfully!");
+      this.reset(); 
+    });
+  </script>
+
+</body>
+</html>
